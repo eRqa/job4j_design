@@ -9,9 +9,8 @@ import java.util.NoSuchElementException;
 
 public class BackwardArrayItTest {
 
-
     @Test
-    public void whenMultiCallhasNextThenTrue() {
+    public void whenMultiCallHasNextThenTrue() {
         BackwardArrayIt it = new BackwardArrayIt(
                 new int[] {1, 2, 3}
         );
@@ -27,6 +26,17 @@ public class BackwardArrayItTest {
         assertThat(it.next(), is(3));
         assertThat(it.next(), is(2));
         assertThat(it.next(), is(1));
+    }
+
+    @Test(expected = NoSuchElementException.class)
+    public void whenNextAtTheEndOfArr() {
+        BackwardArrayIt it = new BackwardArrayIt(
+                new int[] {1, 2, 3}
+        );
+        assertThat(it.next(), is(3));
+        assertThat(it.next(), is(2));
+        assertThat(it.next(), is(1));
+        it.next();
     }
 
     @Test(expected = NoSuchElementException.class)
