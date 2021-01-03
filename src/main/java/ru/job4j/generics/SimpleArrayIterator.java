@@ -14,7 +14,7 @@ public class SimpleArrayIterator<T> implements Iterator<T> {
 
     @Override
     public boolean hasNext() {
-        return index < data.length;
+        return index < data.length && data[index] != null;
     }
 
     @Override
