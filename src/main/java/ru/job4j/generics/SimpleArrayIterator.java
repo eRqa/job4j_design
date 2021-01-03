@@ -7,14 +7,16 @@ public class SimpleArrayIterator<T> implements Iterator<T> {
 
     private Object[] data;
     private int index = 0;
+    private int length = 0;
 
-    public SimpleArrayIterator(Object[] data) {
+    public SimpleArrayIterator(Object[] data, int length) {
         this.data = data;
+        this.length = length;
     }
 
     @Override
     public boolean hasNext() {
-        return index < data.length && data[index] != null;
+        return length < index;
     }
 
     @Override

@@ -24,6 +24,7 @@ public class SimpleArray<T> implements Iterable {
     public void remove(int index) {
         Objects.checkIndex(index, length);
         System.arraycopy(data, index + 1, data, index, length - 1 - index);
+        length--;
     }
 
     public T get(int index) {
@@ -33,6 +34,6 @@ public class SimpleArray<T> implements Iterable {
 
     @Override
     public Iterator<T> iterator() {
-        return new SimpleArrayIterator<T>(data);
+        return new SimpleArrayIterator<T>(data, length);
     }
 }
