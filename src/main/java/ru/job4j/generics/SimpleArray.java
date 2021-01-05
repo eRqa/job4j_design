@@ -32,6 +32,19 @@ public class SimpleArray<T> implements Iterable {
         return (T) data[index];
     }
 
+    public boolean contains(T model) {
+        boolean rsl = false;
+        if (length > 0) {
+            for (int i = 0; i < length; i++) {
+                if (data[i].equals(model)) {
+                    rsl = true;
+                    break;
+                }
+            }
+        }
+        return rsl;
+    }
+
     @Override
     public Iterator<T> iterator() {
         return new SimpleArrayIterator<T>(data, length);

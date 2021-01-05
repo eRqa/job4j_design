@@ -15,4 +15,14 @@ public class SimpleArrayIteratorTest {
         Iterator<Integer> it = simpleArray.iterator();
         assertThat(it.hasNext(), is(false));
     }
+
+    @Test
+    public void whenNotEmptyCollectionThenHasNextFalse() {
+        SimpleArray<Integer> simpleArray = new SimpleArray<>(5);
+        simpleArray.add(1);
+        simpleArray.add(2);
+        simpleArray.add(3);
+        Iterator<Integer> it = simpleArray.iterator();
+        assertThat(it.hasNext(), is(true));
+    }
 }
