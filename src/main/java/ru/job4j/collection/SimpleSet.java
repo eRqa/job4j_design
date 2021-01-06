@@ -6,7 +6,7 @@ import java.util.Iterator;
 
 public class SimpleSet<E> implements Iterable<E> {
 
-    SimpleArray<E> data;
+    private SimpleArray<E> data;
 
     public SimpleSet(int size) {
         this.data = new SimpleArray<E>(size);
