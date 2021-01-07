@@ -34,14 +34,14 @@ public class ListUtilsTest {
     @Test
     public void whenRemoveIf() {
         List<Integer> input = new ArrayList<>(Arrays.asList(1, 2, 3, 4));
-        ListUtils.removeIf(input, integer -> integer>2);
+        ListUtils.removeIf(input, integer -> integer > 2);
         assertThat(Arrays.asList(1, 2), Is.is(input));
     }
 
     @Test
     public void whenReplaceIf() {
         List<Integer> input = new ArrayList<>(Arrays.asList(1, 2, 3, 4));
-        ListUtils.replaceIf(input, integer -> integer>2,1);
+        ListUtils.replaceIf(input, integer -> integer > 2, 1);
         assertThat(Arrays.asList(1, 2, 1, 1), Is.is(input));
     }
 

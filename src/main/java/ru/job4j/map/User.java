@@ -15,17 +15,35 @@ public class User {
     }
 
     public static void main(String[] args) {
-        Calendar calendarVasilev = new GregorianCalendar(2017, 0 , 25);
-        Calendar calendarPetrov = new GregorianCalendar(2015, 0 , 25);
-        User Vasilev = new User("Vasilev", 1, calendarVasilev);
-        User Petrov = new User("Petrov", 4, calendarPetrov);
+        Calendar calendarVasilev = new GregorianCalendar(2017, 0, 25);
+        Calendar calendarPetrov = new GregorianCalendar(2015, 0, 25);
+        User vasilev = new User("Vasilev", 1, calendarVasilev);
+        User petrov = new User("Petrov", 4, calendarPetrov);
 
         Map<User, Object> hashMap = new HashMap<>();
-        hashMap.put(Vasilev, "Vasilev");
-        hashMap.put(Petrov, "Petrov");
+        hashMap.put(vasilev, "Vasilev");
+        hashMap.put(petrov, "Petrov");
 
         System.out.println(hashMap.toString());
 
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        User user = (User) o;
+        return children == user.children
+                && Objects.equals(name, user.name)
+                && Objects.equals(birthday, user.birthday);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, children, birthday);
+    }
 }

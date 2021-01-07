@@ -11,8 +11,8 @@ public class LogFilter {
             List<String> lines = new ArrayList<String>();
             in.lines().forEach(lines::add);
 
-            for (String line :
-                    lines) {
+            for (String line
+                    : lines) {
                 String[] allLineParts = line.split(" ");
                 String code = allLineParts[allLineParts.length - 2];
                 if (code.equals("404")) {
