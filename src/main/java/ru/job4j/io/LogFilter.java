@@ -20,7 +20,7 @@ public class LogFilter {
                 }
             }
         } catch (Exception e) {
-
+            e.printStackTrace();
         }
         return result;
     }
