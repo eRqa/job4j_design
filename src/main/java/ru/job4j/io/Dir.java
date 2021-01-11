@@ -13,7 +13,7 @@ public class Dir {
         }
         System.out.println(String.format("size : %s", file.getTotalSpace()));
         for (File subFile : file.listFiles()) {
-            System.out.println("File name = " + subFile.getName() + " : size = " + subFile.getTotalSpace());
+            System.out.println("File name = " + subFile.getName() + " : size = " + subFile.length());
         }
     }
 }
