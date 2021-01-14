@@ -13,7 +13,6 @@ public class DuplicateFinder implements FileVisitor<Path> {
     private List<Path> files = new ArrayList<>();
     private List<Path> duplicateFiles = new ArrayList<>();
 
-
     @Override
     public FileVisitResult preVisitDirectory(Path dir, BasicFileAttributes attrs) throws IOException {
         return CONTINUE;

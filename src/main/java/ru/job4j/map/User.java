@@ -16,34 +16,29 @@ public class User {
 
     public static void main(String[] args) {
         Calendar calendarVasilev = new GregorianCalendar(2017, 0, 25);
-        Calendar calendarPetrov = new GregorianCalendar(2015, 0, 25);
-        User vasilev = new User("Vasilev", 1, calendarVasilev);
-        User petrov = new User("Petrov", 4, calendarPetrov);
+        User user1 = new User("Vasilev", 1, calendarVasilev);
+        User user2 = new User("Vasilev", 1, calendarVasilev);
 
         Map<User, Object> hashMap = new HashMap<>();
-        hashMap.put(vasilev, "Vasilev");
-        hashMap.put(petrov, "Petrov");
+        hashMap.put(user1, "Vasilev");
+        hashMap.put(user2, "Vasilev");
 
         System.out.println(hashMap.toString());
 
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        User user = (User) o;
-        return children == user.children
-                && Objects.equals(name, user.name)
-                && Objects.equals(birthday, user.birthday);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(name, children, birthday);
-    }
+//    @Override
+//    public boolean equals(Object o) {
+//        if (this == o) return true;
+//        if (o == null || getClass() != o.getClass()) return false;
+//        User user = (User) o;
+//        return children == user.children
+//                && Objects.equals(name, user.name)
+//                && Objects.equals(birthday, user.birthday);
+//    }
+//
+//    @Override
+//    public int hashCode() {
+//        return Objects.hash(name, children, birthday);
+//    }
 }
