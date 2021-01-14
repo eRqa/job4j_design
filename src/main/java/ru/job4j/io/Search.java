@@ -8,8 +8,15 @@ import java.util.List;
 
 public class Search {
     public static void main(String[] args) throws IOException {
-        Path start = Paths.get("C:\\testDir");
-        search(start, "txt").forEach(System.out::println);
+        if (args.length == 0) {
+            throw new IllegalArgumentException("No parameters specified");
+        }
+
+        String filePath = args[0];
+        String ext = args[1];
+
+        Path start = Paths.get(filePath);
+        search(start, ext).forEach(System.out::println);
     }
 
     public static List<Path> search(Path root, String ext) throws IOException {
