@@ -4,14 +4,16 @@ import java.io.IOException;
 import java.nio.file.*;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import static java.nio.file.FileVisitResult.CONTINUE;
 
 public class DuplicateFinder implements FileVisitor<Path> {
 
-    private List<Path> files = new ArrayList<>();
     private List<Path> duplicateFiles = new ArrayList<>();
+    private Set<FileProperty> filesSet = new HashSet<>();
 
     @Override
     public FileVisitResult preVisitDirectory(Path dir, BasicFileAttributes attrs) throws IOException {
@@ -20,11 +22,18 @@ public class DuplicateFinder implements FileVisitor<Path> {
 
     @Override
     public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
-        files.stream()
-                .filter(currentPath -> currentPath.getFileName().equals(file.getFileName())
-                        && currentPath.toFile().length() == file.toFile().length())
-                .findFirst().ifPresent(founded -> duplicateFiles.add(file));
-        files.add(file);
+
+        FileProperty fileProperty = new FileProperty(file.toFile().length(), file.getFileName());
+        if (filesSet.contains(fileProperty)) {
+            duplicateFiles.add(file);
+        }
+        filesSet.add(fileProperty);
+
+//        files.stream()
+//                .filter(currentPath -> currentPath.getFileName().equals(file.getFileName())
+//                        && currentPath.toFile().length() == file.toFile().length())
+//                .findFirst().ifPresent(founded -> duplicateFiles.add(file));
+//        files.add(file);
         return CONTINUE;
     }
 
