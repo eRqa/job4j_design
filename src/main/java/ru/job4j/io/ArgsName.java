@@ -18,6 +18,9 @@ public class ArgsName {
         for (String arg
                 : args) {
             String[] partsOfArg = arg.split("=");
+            if (partsOfArg.length != 2) {
+                throw new IllegalArgumentException("invalid arguments");
+            }
             values.put(partsOfArg[0].substring(1), partsOfArg[1]);
         }
     }
