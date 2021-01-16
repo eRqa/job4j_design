@@ -11,6 +11,9 @@ public class Search {
         if (args.length == 0) {
             throw new IllegalArgumentException("No parameters specified");
         }
+        if (args.length < 2) {
+            throw new IllegalArgumentException("There should be 2 parameters");
+        }
 
         String filePath = args[0];
         String ext = args[1];
