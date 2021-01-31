@@ -4,37 +4,25 @@ import java.util.*;
 
 public class FreezeStr {
     public static boolean eq(String left, String right) {
-
         boolean rsl = false;
 
-        char[] leftCharArray = left.toCharArray();
-        char[] rightCharArray = right.toCharArray();
-        Map<Character, Integer> leftMap = new HashMap<>();
+        Set<Character> leftSet = stringToSet(left);
+        Set<Character> rightSet = stringToSet(right);
+
+        return leftSet.containsAll(rightSet);
+    }
+
+    private static Set<Character> stringToSet(String str) {
+        Set<Character> set = new HashSet<>();
+        char[] charArray = str.toCharArray();
 
         for (char c
-                : leftCharArray) {
-            if (leftMap.containsKey(c)) {
-                Integer intValue = leftMap.get(c);
-                leftMap.put(c, ++intValue);
-            } else {
-                leftMap.put(c, 1);
-            }
+                : charArray) {
+            set.add(c);
         }
 
-        for (char c
-                : rightCharArray) {
-            if (leftMap.containsKey(c)) {
-                Integer intValue = leftMap.get(c);
-                leftMap.put(c, --intValue);
-                if (intValue == 0) {
-                    leftMap.remove(c);
-                }
-            } else {
-                break;
-            }
-        }
+        return set;
 
-        return leftMap.size() == 0;
     }
 
 }
