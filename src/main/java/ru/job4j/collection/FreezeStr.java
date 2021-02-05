@@ -11,10 +11,8 @@ public class FreezeStr {
 
         for (char c
                 : leftCharArray) {
-            if (leftMap.putIfAbsent(c, 1) != null) {
-                Integer intValue = leftMap.get(c);
-                leftMap.put(c, ++intValue);
-            }
+            leftMap.putIfAbsent(c, 0);
+            leftMap.compute(c, (key, value) -> ++value);
         }
 
         for (char c
