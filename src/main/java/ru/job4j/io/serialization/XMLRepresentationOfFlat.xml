@@ -1,0 +1,13 @@
+<?xml version="1.1" encoding="UTF-8" ?>
+<flat>
+    <itIsFirstFloor>false</itIsFirstFloor>
+    <square>32</square>
+    <ownerName>Gennadi</ownerName>
+    <someObject>
+        <volume>23</volume>
+    </someObject>
+    <rooms>
+        <room>Bedroom</room>
+        <room>Kitchen</room>
+    </rooms>
+</flat>
