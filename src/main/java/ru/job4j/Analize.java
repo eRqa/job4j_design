@@ -8,24 +8,19 @@ import java.util.stream.Collectors;
 public class Analize {
 
     public Info diff(List<User> previous, List<User> current) {
-        Map<Integer, User> map = current.stream().collect(Collectors.toMap(User::getId, user -> user));
-        int added = 0;
+        Map<Integer, User> currentMap = current.stream().collect(Collectors.toMap(User::getId, user -> user));
         int deleted = 0;
         int changed = 0;
-        for (Integer key : map.keySet()) {
-            int previousIndex = previous.indexOf(map.get(key));
-            User previousUser = null;
-            if (previousIndex >= 0) {
-                previousUser = previous.get(previousIndex);
+        for (User previousUser : previous) {
+            if (!currentMap.containsKey(previousUser.id)) {
+                deleted++;
             }
-            if (!previous.remove(map.get(key))) {
-                added++;
-            } else if (previousUser != null && !map.get(key).name.equals(previousUser.name)) {
+            var currentUser = currentMap.remove(previousUser.id);
+            if (currentUser != null && !previousUser.name.equals(currentUser.getName())) {
                 changed++;
             }
-            deleted = previous.size();
         }
-        return new Info(added, changed, deleted);
+        return new Info(currentMap.size(), changed, deleted);
     }
 
     public static class User {
