@@ -38,4 +38,33 @@ public class Cinema3DTest {
         List<Session> sessions = cinema.find(session -> true);
         assertThat(sessions, is(Collections.singletonList(new Session3D())));
     }
+
+    @Test(expected = IllegalSeatException.class)
+    public void whenBuyOneSeatTwice() {
+        Account account = new AccountCinema();
+        Cinema cinema = new Cinema3D();
+        Calendar date = Calendar.getInstance();
+        date.set(2020, 10, 10, 23, 00);
+        Ticket ticket = cinema.buy(account, 1, 1, date);
+        Ticket twiceTicket = cinema.buy(account, 1, 1, date);
+    }
+
+    @Test(expected = IllegalSeatException.class)
+    public void whenBuyIllegalSeat() {
+        Account account = new AccountCinema();
+        Cinema cinema = new Cinema3D();
+        Calendar date = Calendar.getInstance();
+        date.set(2020, 10, 10, 23, 00);
+        Ticket ticket = cinema.buy(account, 1500, 1, date);
+    }
+
+    @Test(expected = IllegalStateException.class)
+    public void whenBuyIncorrectDate() {
+        Account account = new AccountCinema();
+        Cinema cinema = new Cinema3D();
+        Calendar date = Calendar.getInstance();
+        date.set(2005, 10, 10, 23, 00);
+        Ticket ticket = cinema.buy(account, 1, 1, date);
+    }
+
 }
